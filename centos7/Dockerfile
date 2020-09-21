@@ -1,5 +1,5 @@
-FROM centos:centos7
-MAINTAINER Feng Honglin <hfeng@tutum.co>
+ARG CENTOS_VERSION=7.8.2003
+FROM centos:$CENTOS_VERSION
 
 RUN yum -y install openssh-server epel-release && \
     yum -y install pwgen && \
@@ -16,3 +16,8 @@ ENV AUTHORIZED_KEYS **None**
 
 EXPOSE 22
 CMD ["/run.sh"]
+
+ARG CENTOS_VERSION
+
+LABEL org.centos.version $CENTOS_VERSION
+LABEL author "Yitzik Casapu"
