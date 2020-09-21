@@ -3,6 +3,7 @@ FROM centos:$CENTOS_VERSION
 
 RUN yum -y install openssh-server epel-release && \
     yum -y install pwgen && \
+    yum clean -y all && \
     rm -f /etc/ssh/ssh_host_ecdsa_key /etc/ssh/ssh_host_rsa_key && \
     ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_ecdsa_key && \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \
