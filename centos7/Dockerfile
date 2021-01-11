@@ -1,4 +1,4 @@
-ARG CENTOS_VERSION=7.8.2003
+ARG CENTOS_VERSION=7.9.2009
 FROM centos:$CENTOS_VERSION
 
 RUN yum -y install openssh-server epel-release && \
