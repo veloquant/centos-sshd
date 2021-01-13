@@ -24,8 +24,8 @@ if [ ! -f /.root_pw_set ]; then
 fi
 
 # TODO: Allow the launching of systemd to be suppressed using an environment variable.
-# Attempt to launch systemd if possible
-[ -r /sys/fs/cgroup ] && [ -d /sys/fs/cgroup ] && [ -d /run/dbus/ ] && exec /usr/sbin/init
+# Attempt to launch systemd if we have a private mount of /run
+[ -r /sys/fs/cgroup ] && [ -d /sys/fs/cgroup ] && ( mount | grep -Pq '\s/run\s+type' ) && exec /usr/sbin/init
 
 echo "NOTICE: Preconditions for running systemd not satisfied, running sshd directly"
 exec /usr/sbin/sshd -D
